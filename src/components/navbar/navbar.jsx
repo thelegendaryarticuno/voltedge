@@ -14,7 +14,7 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <div className="flex items-center">
+                    <div className="flex items-center cursor-pointer" onClick={() => window.location.href = '/'}>
                         <img
                             src="https://via.placeholder.com/24"
                             alt="PostHog Logo"
@@ -25,7 +25,7 @@ const Navbar = () => {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex space-x-6 text-gray-700 dark:text-gray-300">
-                        <a href="#" className="hover:text-gray-900 dark:hover:text-white">Products</a>
+                        <a href="/about" className="hover:text-gray-900 dark:hover:text-white">About</a>
                         <a href="#" className="hover:text-gray-900 dark:hover:text-white">Pricing</a>
                         <a href="#" className="hover:text-gray-900 dark:hover:text-white">Docs</a>
                         <a href="#" className="hover:text-gray-900 dark:hover:text-white">Community</a>

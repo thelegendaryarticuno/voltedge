@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import Hero from '../../components/hero/hero';
+import Services from '../../components/services/services';
 const Home = () => {
   return (
     <div>
-      <h1>I'm Home</h1>
-      <Link to="/about">About</Link>
+      <Hero/>
+      <Services/>
     </div>
   );
 };
