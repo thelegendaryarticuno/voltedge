@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <div id="hero" className="relative bg-gradient-to-br from-sky-100 to-sky-300 dark:from-gray-900 dark:to-gray-800 h-[90vh] overflow-hidden">
+    <div id="hero" className="relative bg-gradient-to-br from-sky-100 to-sky-300 dark:from-neutral-900 dark:to-gray-800 h-[90vh] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(147,197,253,0.15),transparent_50%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(66,240,240,0.05),transparent_50%)]" />
       <div className="h-full relative">
         
