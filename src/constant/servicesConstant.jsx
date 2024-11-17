@@ -2,31 +2,6 @@ import { FileText, User, CreditCard, Users, Zap, Sun, Building2, Power, LineChar
 
 export const services = [
   {
-    icon: <FileText className="w-8 h-8" />,
-    title: "Vendor Invoice Management System",
-    description: "Streamlined system for contractors and firms to manage invoices"
-  },
-  {
-    icon: <User className="w-8 h-8" />,
-    title: "HPSEBL Consumer Portal", 
-    description: "Access your consumer account and manage services"
-  },
-  {
-    icon: <CreditCard className="w-8 h-8" />,
-    title: "IPP Payment Portal",
-    description: "Secure payment gateway for Independent Power Producers"
-  },
-  {
-    icon: <Users className="w-8 h-8" />,
-    title: "Employee & Pensioner Portal",
-    description: "Resource center for current and retired employees"
-  },
-  {
-    icon: <Zap className="w-8 h-8" />,
-    title: "Quick Online Payment",
-    description: "Pay electricity bills, new connections, and reconnections"
-  },
-  {
     icon: <Sun className="w-8 h-8" />,
     title: "National Portal for Rooftop Solar",
     description: "Register and manage your rooftop solar installations"

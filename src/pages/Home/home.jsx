@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet';
 import Hero from '../../components/hero/hero';
 import Services from '../../components/services/services';
+import NewSection from '../../components/newsSection/newssection';
+
 
 const Home = () => {
   return (
@@ -16,6 +18,8 @@ const Home = () => {
       </Helmet>
       <Hero/>
       <Services/>
+      <NewSection/>
+      
     </div>
   );
 };

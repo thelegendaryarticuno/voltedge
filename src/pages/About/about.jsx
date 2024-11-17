@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import AboutHero from "../../components/hero/abouthero";
 
 const About = () => {
     return (
@@ -12,7 +13,7 @@ const About = () => {
         <meta property="og:type" content="website" />
         <meta name="theme-color" content="#006D77" />
       </Helmet>
-        <h1>I'm About</h1>
+      <AboutHero/>
       </div>
     );
   };

@@ -29,7 +29,7 @@ const Hero = () => {
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 max-w-lg animate-fade-in">
               Track, analyze, and optimize your energy consumption in real-time with our advanced smart meter technology.
             </p>
-            <button className=" bg-yellow-300 hover:bg-yellow-400 text-white font-bold py-3 px-8 rounded-xl dark: text-black shadow-lg hover:shadow-blue-400/50 transition-all duration-300 animate-bounce-subtle">
+            <button className=" bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl  shadow-lg hover:shadow-blue-400/50 transition-all duration-300 animate-bounce-subtle">
               Get Started Now
             </button>
           </div>

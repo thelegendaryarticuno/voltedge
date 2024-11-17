@@ -1,5 +1,6 @@
 import Navbar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
+import ContactUsBubble from './components/contactus/bubble';
 
 const Layout = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ const Layout = ({ children }) => {
       <main className="flex-grow">
         {children}
       </main>
+      <ContactUsBubble/>
       <Footer />
     </div>
   )
