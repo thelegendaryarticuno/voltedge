@@ -1,4 +1,4 @@
-import { FileText, User, CreditCard, Users, Zap, Sun, Building2, Power, LineChart } from 'lucide-react';
+import {Sun, Building2, Power, LineChart } from 'lucide-react';
 
 export const services = [
   {

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import AboutHero from "../../components/hero/abouthero";
+import AboutSection from "../../components/abtsection/abtsection";
 
 const About = () => {
     return (
@@ -14,6 +15,7 @@ const About = () => {
         <meta name="theme-color" content="#006D77" />
       </Helmet>
       <AboutHero/>
+      <AboutSection/>
       </div>
     );
   };

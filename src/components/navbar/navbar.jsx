@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Building2, Power } from 'lucide-react';
 import ThemeSwitch from '../themeSwitch/theme';
 
 const Navbar = () => {
@@ -24,12 +24,19 @@ const Navbar = () => {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex space-x-6 text-gray-700 dark:text-gray-300">
-                        <a href="/about" className="hover:text-gray-900 dark:hover:text-white">About</a>
-                        <a href="#" className="hover:text-gray-900 dark:hover:text-white">Pricing</a>
-                        <a href="#" className="hover:text-gray-900 dark:hover:text-white">Docs</a>
-                        <a href="#" className="hover:text-gray-900 dark:hover:text-white">Community</a>
-                        <a href="#" className="hover:text-gray-900 dark:hover:text-white">Company</a>
+                    <div className="hidden md:flex space-x-8 text-gray-700 dark:text-gray-300">
+                        <a href="/about" className="hover:text-gray-900 dark:hover:text-white flex items-center">
+                            <Sun className="h-6 w-6 mr-2" />
+                            About
+                        </a>
+                        <a href="/pricing" className="hover:text-gray-900 dark:hover:text-white flex items-center">
+                            <Building2 className="h-6 w-6 mr-2" />
+                            Pricing
+                        </a>
+                        <a href="/docs" className="hover:text-gray-900 dark:hover:text-white flex items-center">
+                            <Power className="h-6 w-6 mr-2" />
+                            Docs
+                        </a>
                     </div>
 
                     {/* Desktop Buttons */}
@@ -59,12 +66,19 @@ const Navbar = () => {
                 {isMenuOpen && (
                     <div className="md:hidden mt-4">
                         <div className="flex flex-col space-y-4 text-gray-700 dark:text-gray-300">
-                            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Products</a>
-                            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Pricing</a>
-                            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Docs</a>
-                            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Community</a>
-                            <a href="#" className="hover:text-gray-900 dark:hover:text-white">Company</a>
-                            <button className="text-gray-800 bg-yellow-300 hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold w-full">
+                            <a href="/about" className="hover:text-gray-900 dark:hover:text-white flex items-center">
+                                <Sun className="h-6 w-6 mr-2" />
+                                About
+                            </a>
+                            <a href="/pricing" className="hover:text-gray-900 dark:hover:text-white flex items-center">
+                                <Building2 className="h-6 w-6 mr-2" />
+                                Pricing
+                            </a>
+                            <a href="/docs" className="hover:text-gray-900 dark:hover:text-white flex items-center">
+                                <Power className="h-6 w-6 mr-2" />
+                                Docs
+                            </a>
+                            <button className="text-gray-800 bg-yellow-300 hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold w-full flex items-center">
                                 Get started
                             </button>
                             <ThemeSwitch />

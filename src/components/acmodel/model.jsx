@@ -1,6 +1,6 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Text } from '@react-three/drei';
+import { OrbitControls, Text } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 
 function Scene() {
