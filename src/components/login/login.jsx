@@ -51,7 +51,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/auth/login-user', {
+      const response = await fetch('https://voltedge-backend.onrender.com/auth/login-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function LoginPage() {
   const handleCreateAccount = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/auth/create-user', {
+      const response = await fetch('https://voltedge-backend.onrender.com/auth/create-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export default function LoginPage() {
 
   const handleSendOTP = async () => {
     try {
-      await fetch('http://localhost:5000/auth/send-otp', {
+      await fetch('https://voltedge-backend.onrender.com/auth/send-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default function LoginPage() {
   const handleVerifyOTP = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/auth/verify-otp', {
+      const response = await fetch('https://voltedge-backend.onrender.com/auth/verify-otp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

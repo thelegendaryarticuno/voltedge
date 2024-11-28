@@ -48,7 +48,7 @@ export default function Complaints() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/auth/complaints', {
+      const response = await fetch('https://voltedge-backend.onrender.com/auth/complaints', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
