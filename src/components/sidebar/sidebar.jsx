@@ -7,7 +7,7 @@ const Sidebar = () => {
 	const { theme, toggleTheme } = useTheme();
 	const isDark = theme === 'dark';
 	const [isOpen, setIsOpen] = useState(true);
-	const { page } = useParams();
+	const { page, userId } = useParams();
 
 	const toggleSidebar = () => {
 		setIsOpen(!isOpen);
@@ -70,25 +70,17 @@ const Sidebar = () => {
 						<ul className="pt-2 pb-4 space-y-1 text-sm">
 							<li className="rounded-sm">
 								<Link 
-									to="/dashboard" 
+									to={`/dashboard/${userId}`}
 									className={`flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700 ${page === 'home' ? 'bg-gray-700 text-white' : ''}`}
 								>
 									<Home className={`w-5 h-5 ${page === 'home' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`} />
 									<span>Home</span>
 								</Link>
 							</li>
+							
 							<li className="rounded-sm">
 								<Link 
-									to="/dashboard/about" 
-									className={`flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700 ${page === 'about' ? 'bg-gray-700 text-white' : ''}`}
-								>
-									<Heart className={`w-5 h-5 ${page === 'about' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`} />
-									<span>About</span>
-								</Link>
-							</li>
-							<li className="rounded-sm">
-								<Link 
-									to="/dashboard/my-devices" 
+									to={`/dashboard/my-devices`}
 									className={`flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700 ${page === 'my-devices' ? 'bg-gray-700 text-white' : ''}`}
 								>
 									<Smartphone className={`w-5 h-5 ${page === 'my-devices' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`} />
@@ -97,7 +89,7 @@ const Sidebar = () => {
 							</li>
 							<li className="rounded-sm">
 								<Link 
-									to="/dashboard/complaints" 
+									to={`/dashboard/complaints/`}
 									className={`flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700 ${page === 'complaints' ? 'bg-gray-700 text-white' : ''}`}
 								>
 									<MessageSquare className={`w-5 h-5 ${page === 'complaints' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`} />
@@ -106,7 +98,7 @@ const Sidebar = () => {
 							</li>
 							<li className="rounded-sm">
 								<Link 
-									to="/dashboard/contactus" 
+									to={`/dashboard/contactus`}
 									className={`flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700 ${page === 'contactus' ? 'bg-gray-700 text-white' : ''}`}
 								>
 									<Settings className={`w-5 h-5 ${page === 'contactus' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`} />
@@ -115,7 +107,7 @@ const Sidebar = () => {
 							</li>
 							<li className="rounded-sm">
 								<Link 
-									to="/dashboard/logout" 
+									to={`/`}
 									className={`flex items-center p-2 space-x-3 rounded-md hover:bg-gray-700 ${page === 'logout' ? 'bg-gray-700 text-white' : ''}`}
 								>
 									<LogOut className={`w-5 h-5 ${page === 'logout' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`} />
@@ -131,7 +123,7 @@ const Sidebar = () => {
 						<h2 className="text-lg font-semibold">Leroy Jenkins</h2>
 						<span className="flex items-center space-x-1">
 							<Link 
-								to="/dashboard/profile" 
+								to={`/dashboard/${userId}/profile`}
 								className={`text-xs hover:underline ${page === 'profile' ? 'text-white' : isDark ? 'text-gray-400' : 'text-gray-600'}`}
 							>
 								View profile

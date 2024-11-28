@@ -66,8 +66,8 @@ export default function LoginPage() {
       } else if (data.error === "Invalid password") {
         setErrorMessage("Incorrect password please type again")
         setShowErrorDialog(true)
-      } else if (data.message === "User registered successfully") {
-        navigate('/')
+      } else if (data.message === "User logged in successfully") {
+        navigate(`/dashboard/${data.userId}`)
       }
     } catch (error) {
       console.error('Error logging in:', error)
@@ -112,7 +112,6 @@ export default function LoginPage() {
       console.error('Error sending OTP:', error)
     }
   }
-
   const handleVerifyOTP = async (e) => {
     e.preventDefault()
     try {
@@ -129,7 +128,7 @@ export default function LoginPage() {
       const data = await response.json()
       
       if (response.ok) {
-        navigate('/')
+        navigate(`/dashboard/${data.userId}`)
       } else if (data.error === "Duplicate email") {
         setShowDuplicateDialog(true)
       }

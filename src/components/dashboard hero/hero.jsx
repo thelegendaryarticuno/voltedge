@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 
 const DashboardHero = () => {
@@ -39,44 +39,57 @@ const DashboardHero = () => {
     }
   ];
 
-  // Mock data for meters
-  const meterData = [
+  // Mock data for meters with Indian household ranges
+  const [meterData, setMeterData] = useState([
     {
       title: "Voltage",
-      value: 220,
-      max: 250,
+      value: 230, // Standard Indian household voltage
+      max: 270, // Max allowable voltage
       unit: "V",
       color: "blue"
     },
     {
       title: "Current", 
-      value: 10,
-      max: 15,
+      value: 25,
+      max: 32, // Typical MCB rating for Indian homes
       unit: "A",
       color: "green"
     },
     {
       title: "Power",
-      value: 2200,
-      max: 3000,
-      unit: "W",
+      value: 4.2,
+      max: 7, // In kilowatts for Indian household
+      unit: "kW",
       color: "red"
     },
     {
       title: "Energy",
-      value: 150,
-      max: 200,
+      value: 350,
+      max: 500, // Monthly consumption for medium-sized home
       unit: "kWh",
-      color: "yellow"
+      color: "yellow" 
     },
     {
-      title: "Power Factor",
-      value: 0.92,
-      max: 1,
-      unit: "",
-      color: "purple" 
+      title: "Frequency",
+      value: 50, // Standard Indian grid frequency
+      max: 52,
+      unit: "Hz",
+      color: "purple"
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMeterData(prevData => 
+        prevData.map(meter => ({
+          ...meter,
+          value: Number((Math.random() * (meter.max * 0.8)).toFixed(1)) // Random value up to 80% of max
+        }))
+      );
+    }, 10000); // Update every 10 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   return (
     <div className={`min-h-screen p-4 md:p-6 ${isDark ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-800'}`}>
@@ -128,7 +141,11 @@ const DashboardHero = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className={`bg-${meter.color}-500 h-2 rounded-full`}
+                    className={`${
+                      meter.color === 'yellow' ? 'bg-yellow-500' :
+                      meter.color === 'purple' ? 'bg-purple-500' :
+                      `bg-${meter.color}-500`
+                    } h-2 rounded-full transition-all duration-500`}
                     style={{ width: `${(meter.value / meter.max) * 100}%` }}
                   ></div>
                 </div>
