@@ -4,17 +4,28 @@ import Input from '@mui/material/Input';
 import Card from '@mui/material/Card';
 import { Mail, User, Lock, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [signupStep, setSignupStep] = useState('details') // details, otp
+  const [showDuplicateDialog, setShowDuplicateDialog] = useState(false)
+  const [showErrorDialog, setShowErrorDialog] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     otp: ''
+  })
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
   })
 
   const toggleForm = () => {
@@ -28,6 +39,39 @@ export default function LoginPage() {
       ...formData,
       [e.target.name]: e.target.value
     })
+  }
+
+  const handleLoginInputChange = (e) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch('http://localhost:5000/auth/login-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData)
+      })
+      const data = await response.json()
+      
+      if (data.error === "User not found") {
+        setErrorMessage("You aren't registered or maybe check your email")
+        setShowErrorDialog(true)
+      } else if (data.error === "Invalid password") {
+        setErrorMessage("Incorrect password please type again")
+        setShowErrorDialog(true)
+      } else if (data.message === "User registered successfully") {
+        navigate('/')
+      }
+    } catch (error) {
+      console.error('Error logging in:', error)
+    }
   }
 
   const handleCreateAccount = async (e) => {
@@ -44,6 +88,7 @@ export default function LoginPage() {
           password: formData.password
         })
       })
+      
       if (response.ok) {
         setSignupStep('otp')
       }
@@ -81,8 +126,12 @@ export default function LoginPage() {
           otp: formData.otp
         })
       })
+      const data = await response.json()
+      
       if (response.ok) {
         navigate('/')
+      } else if (data.error === "Duplicate email") {
+        setShowDuplicateDialog(true)
       }
     } catch (error) {
       console.error('Error verifying OTP:', error)
@@ -91,6 +140,38 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center px-4">
+      <Dialog
+        open={showDuplicateDialog}
+        onClose={() => setShowDuplicateDialog(false)}
+      >
+        <DialogContent>
+          <DialogContentText>
+            You are already registered. Click here to login.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => navigate('/')} color="primary">
+            Click Here
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={showErrorDialog}
+        onClose={() => setShowErrorDialog(false)}
+      >
+        <DialogContent>
+          <DialogContentText>
+            {errorMessage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowErrorDialog(false)} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Card className="w-full max-w-[800px] h-[500px] flex overflow-hidden relative bg-white dark:bg-gray-800">
         <div className={`w-1/2 p-8 transition-all duration-700 ease-in-out flex items-center ${isSignUp ? 'translate-x-full' : ''}`}>
           <div className="w-full">
@@ -184,10 +265,13 @@ export default function LoginPage() {
                 </form>
               )
             ) : (
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleLogin}>
                 <div className="relative">
                   <Input 
                     type="email" 
+                    name="email"
+                    value={loginData.email}
+                    onChange={handleLoginInputChange}
                     placeholder="Email"
                     className="w-full pl-10 pr-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-md focus:ring-blue-500 dark:focus:ring-blue-400"
                   />
@@ -196,6 +280,9 @@ export default function LoginPage() {
                 <div className="relative">
                   <Input 
                     type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={loginData.password}
+                    onChange={handleLoginInputChange}
                     placeholder="Password"
                     className="w-full pl-10 pr-10 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-md focus:ring-blue-500 dark:focus:ring-blue-400"
                   />
@@ -215,6 +302,7 @@ export default function LoginPage() {
                   Forgot your password?
                 </a>
                 <Button 
+                  type="submit"
                   variant="contained"
                   className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white py-2 rounded-md transition-colors"
                 >

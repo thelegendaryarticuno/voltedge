@@ -1,6 +1,7 @@
 import React from 'react';
 import EnergyMeter from '../acmodel/model';
 import { ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const scrollToNextSection = () => {
@@ -29,9 +30,11 @@ const Hero = () => {
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 max-w-lg animate-fade-in">
               Track, analyze, and optimize your energy consumption in real-time with our advanced smart meter technology.
             </p>
+            <Link to="/login">
             <button className=" bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl  shadow-lg hover:shadow-blue-400/50 transition-all duration-300 animate-bounce-subtle">
               Get Started Now
             </button>
+            </Link>
           </div>
 
           {/* 3D Model Container */}
